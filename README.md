@@ -15,6 +15,9 @@ on:
 jobs:
   assign:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - uses: wachawo/github-auto-assign@v0.0.1
         with:
