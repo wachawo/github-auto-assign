@@ -1,0 +1,8 @@
+-r requirements.txt
+pre-commit
+black
+ruff
+flake8
+mypy
+pytest
+pytest-cov

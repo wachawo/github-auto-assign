@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Python tooling
+.python-version
+pip-wheel-metadata/
+
+# macOS / Linux
+.DS_Store
+*.swp
+*.swo

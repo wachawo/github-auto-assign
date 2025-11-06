@@ -1,0 +1,11 @@
+line-length = 180
+lint.select = ["E","F","I","UP","B","SIM","C4","PL"]
+lint.ignore = ["E501"]
+fix = true
+include = ["*.py"]
+exclude = ["examples/", "tests/", ".git", ".venv", "__pycache__", "build", "dist", "*.md", "*.json", "*.yaml", "*.yml", "*.toml"]
+
+[lint.pylint]
+max-branches = 20
+max-statements = 50
+max-returns = 10

@@ -1,0 +1,28 @@
+name: "GitHub Auto-assign"
+description: "Automatically assign assignees and request reviewers for PRs and Issues"
+author: "wachawo"
+
+inputs:
+  repo-token:
+    description: "GitHub token (use secrets.GITHUB_TOKEN)"
+    required: true
+  assignees:
+    description: "Comma-separated GitHub usernames to assign"
+    required: false
+    default: ""
+  reviewers:
+    description: "Comma-separated GitHub usernames to request as reviewers (PRs only)"
+    required: false
+    default: ""
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    INPUT_REPO_TOKEN: ${{ inputs.repo-token }}
+    INPUT_ASSIGNEES: ${{ inputs.assignees }}
+    INPUT_REVIEWERS: ${{ inputs.reviewers }}
+
+branding:
+  icon: "users"
+  color: "blue"
