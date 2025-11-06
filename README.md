@@ -39,3 +39,8 @@ pre-commit install
 pre-commit install --hook-type pre-push
 pre-commit run --all-files
 ```
+
+```bash
+pytest --cov=src --cov-report=term-missing --cov-report=xml
+coverage report
+```

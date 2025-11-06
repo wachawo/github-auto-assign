@@ -120,12 +120,15 @@ def main() -> int:
             if reviewers:
                 # You cannot request a review from the PR author; filter to avoid API errors
                 author = payload["pull_request"].get("user", {}).get("login")
+                logger.info(f"PR author: {author}, requested reviewers: {reviewers}")
                 filtered = [r for r in reviewers if r != author]
                 if filtered:
                     logger.info(f"Requesting reviewers for PR #{number}: {filtered}")
                     pr.create_review_request(reviewers=filtered)
                 else:
-                    logger.info("All reviewers matched the author; nothing to request")
+                    logger.info(
+                        f"All reviewers matched the PR author ({author}); cannot request review from yourself"
+                    )
             else:
                 logger.info("No reviewers provided; skipping")
             return 0

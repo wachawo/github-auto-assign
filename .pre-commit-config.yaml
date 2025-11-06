@@ -18,6 +18,7 @@ repos:
         entry: mypy
         language: system
         types: [python]
+        # args: ["--exclude=^tests/"]
 
       - id: pytest
         name: pytest
