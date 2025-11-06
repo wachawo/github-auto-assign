@@ -17,4 +17,4 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           assignees: wachawo
-          reviewers: wachawo, copilot
+          reviewers: wachawo, copilot-pull-request-reviewer
