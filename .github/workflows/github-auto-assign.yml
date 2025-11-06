@@ -1,0 +1,17 @@
+name: GitHub Auto-assign
+on:
+  issues:
+    types: [opened, reopened]
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+jobs:
+  auto_assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub Auto-assign
+        uses: wachawo/github-auto-assign@v0.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: wachawo
+          reviewers: wachawo

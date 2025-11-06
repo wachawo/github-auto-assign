@@ -1,18 +1,11 @@
-# GitHub Auto-assign (Python)
+# GitHub Auto-assign
 
 Automatically assign Issues and Pull Requests and request reviewers.
 
-## Inputs
-- `assignees` *(optional)* – comma/space-separated usernames. Example: `alice,bob`.
-- `reviewers` *(optional)* – comma/space-separated usernames (PRs only).
+## Usage
 
-## Events
-- Issues: assigns on `issues` events (e.g., `opened`, `reopened`).
-- Pull Requests: assigns and requests reviewers on `pull_request` / `pull_request_target` events (`opened`, `reopened`, `ready_for_review`).
-
-## Example workflow
 ```yaml
-name: GitHub Auto-assign
+name: Auto-assign
 on:
   issues:
     types: [opened, reopened]
@@ -20,22 +13,20 @@ on:
     types: [opened, reopened, ready_for_review]
 
 jobs:
-  auto_assign:
+  assign:
     runs-on: ubuntu-latest
     steps:
-      - name: GitHub Auto-assign
-        uses: wachawo/github-auto-assign@v1
+      - uses: wachawo/github-auto-assign@v0.0.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           assignees: wachawo
           reviewers: wachawo
 ```
 
-## Notes
+## Inputs
 
-* Review requests cannot be made to the PR author; the action filters them out.
-* Team reviewers are not supported in this minimal version; you can add `team_reviewers=[...]` to `create_review_request` if needed.
-
+- `assignees` – comma/space-separated usernames
+- `reviewers` – comma/space-separated usernames (PRs only)
 
 ## Dev
 
