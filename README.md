@@ -1,8 +1,10 @@
-# GitHub Auto-assign
+## GitHub Auto-assign
 
-Automatically assign Issues and Pull Requests and request reviewers.
+Automatically assign Issues and Pull Requests.
 
-## Usage
+### Usage
+
+Create a workflow file `.github/workflows/auto-assign.yml`:
 
 ```yaml
 name: Auto-assign
@@ -19,19 +21,18 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: wachawo/github-auto-assign@v0.0.1
+      - name: Auto-assign and request reviewers
+        if:  github.event_name == 'issue' || github.event_name == 'pull_request'
+        uses: wachawo/github-auto-assign@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           assignees: wachawo
-          reviewers: wachawo
+          reviewers: gvanrossum,torvalds,wachawo
 ```
 
-## Inputs
+Don't forget change `assignees` and `reviewers`. You can specify multiple assignees/reviewers by comma separation.
 
-- `assignees` – comma/space-separated usernames
-- `reviewers` – comma/space-separated usernames (PRs only)
-
-## Dev
+### Development
 
 ```bash
 pip3 install -r requirements-dev.yml

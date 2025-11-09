@@ -1,19 +1,19 @@
-name: GitHub Auto-assign
+name: Auto-assign
 on:
   issues:
     types: [opened, reopened]
   pull_request:
     types: [opened, reopened, ready_for_review]
-
 jobs:
-  auto_assign:
+  assign:
     runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
     steps:
-      - name: GitHub Auto-assign
-        uses: wachawo/github-auto-assign@v0.0.1
+      - name: Auto-assign and request reviewers
+        if:  github.event_name == 'issue' || github.event_name == 'pull_request'
+        uses: wachawo/github-auto-assign@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           assignees: wachawo

@@ -1,5 +1,5 @@
 name: "GitHub Auto-assign"
-description: "Automatically assign assignees and request reviewers for PRs and Issues"
+description: "Automatically assign Issues and Pull Requests."
 author: "wachawo"
 
 inputs:
@@ -9,11 +9,11 @@ inputs:
   assignees:
     description: "Comma-separated GitHub usernames to assign"
     required: false
-    default: ""
+    default: "wachawo"
   reviewers:
-    description: "Comma-separated GitHub usernames to request as reviewers (PRs only)"
+    description: "Comma-separated GitHub usernames to request as reviewers"
     required: false
-    default: ""
+    default: "wachawo"
 
 runs:
   using: "docker"
