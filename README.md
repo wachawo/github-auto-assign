@@ -16,7 +16,7 @@ name: Auto-assign
 on:
   issues:
     types: [opened, reopened]
-  pull_request:
+  pull_request_target:
     types: [opened, reopened, ready_for_review]
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Auto-assign and request reviewers
-        if:  github.event_name == 'issues' || github.event_name == 'pull_request'
+        if:  github.event_name == 'issues' || github.event_name == 'pull_request_target'
         uses: wachawo/github-auto-assign@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -36,6 +36,13 @@ jobs:
 ```
 
 Don't forget change `assignees` and `reviewers`. You can specify multiple assignees/reviewers by comma separation.
+
+> **Note:** use `pull_request_target`, not `pull_request`. For pull requests
+> opened from a fork the `pull_request` event grants a read-only `GITHUB_TOKEN`,
+> so assigning/requesting reviewers fails with `403 Resource not accessible by
+> integration`. `pull_request_target` runs in the base repository context with a
+> writable token. It is safe here because this action only calls the GitHub API
+> and never checks out the pull request's code.
 
 ### Development
 
